@@ -1,6 +1,7 @@
 # Omarchy Fedora 42 Edition
 
-!! Ne fonctionne pas pour le moment !!
+> [!WARNING]
+> Ne fonctionne pas pour le moment. En cours de développement
 
 Environnement de bureau Hyprland complet pour Fedora 42 avec support UV, Ansible et OpenTofu.
 
