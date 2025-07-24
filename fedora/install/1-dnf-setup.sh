@@ -1,9 +1,8 @@
 #!/bin/bash
 
 # Installation des outils de développement de base pour Fedora
-# Utiliser dnf group install pour DNF5
-sudo dnf group install -y "Development Tools" "Development Libraries" || \
-sudo dnf install -y gcc gcc-c++ make cmake autoconf automake libtool pkgconf-devel
+echo "Installation des outils de développement..."
+sudo dnf install -y gcc gcc-c++ make cmake autoconf automake libtool pkgconf pkg-config
 
 # Configuration des dépôts RPM Fusion pour les paquets supplémentaires
 sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
