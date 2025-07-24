@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Script de mise à jour du système Omarchy Fedora
+
+echo "🔄 Mise à jour d'Omarchy Fedora Edition..."
+
+# Mise à jour des paquets système
+echo "📦 Mise à jour des paquets DNF..."
+sudo dnf upgrade -y
+
+# Mise à jour des applications Flatpak
+echo "📱 Mise à jour des applications Flatpak..."
+flatpak update -y
+
+# Mise à jour de UV (gestionnaire Python)
+echo "🐍 Mise à jour d'UV..."
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Mise à jour de Mise (gestionnaire de versions)
+echo "🔧 Mise à jour de Mise..."
+~/.local/bin/mise self-update
+
+# Mise à jour des outils Rust/Cargo
+echo "🦀 Mise à jour des outils Rust..."
+rustup update
+
+# Mise à jour de la base de données locate
+echo "🔍 Mise à jour de la base de données locate..."
+sudo updatedb
+
+echo "✅ Mise à jour d'Omarchy Fedora terminée!"

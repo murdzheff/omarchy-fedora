@@ -1,0 +1,222 @@
+# =============================================================================
+# GITIGNORE - Omarchy Fedora Edition
+# Protection des secrets et fichiers de développement
+# =============================================================================
+
+# Claude Code - Configuration et secrets
+.claude/
+CLAUDE.md
+
+# Credentials et tokens
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+*.cer
+*.csr
+secrets.json
+credentials.json
+*.credentials
+.env
+.env.*
+!.env.example
+
+# SSH Keys
+id_rsa
+id_ed25519
+id_ecdsa
+*.pub
+known_hosts
+authorized_keys
+
+# GPG Keys
+*.gpg
+*.asc
+secring.gpg
+pubring.gpg
+trustdb.gpg
+
+# API Keys et tokens
+*token*
+*secret*
+*password*
+*passwd*
+*.api-key
+.aws/
+.azure/
+.gcp/
+
+# Ansible
+ansible_vault_password
+*.vault
+host_vars/*/vault.yml
+group_vars/*/vault.yml
+inventory/vault/
+
+# Terraform/OpenTofu
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+.terraform/
+.terraform.lock.hcl
+terraform.rc
+.terraformrc
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Docker secrets
+docker-compose.override.yml
+.docker/
+
+# Kubernetes secrets
+kubeconfig
+*.kubeconfig
+kube-config
+
+# Backup files et temporary
+*.bak
+*.backup
+*.tmp
+*.temp
+*~
+.#*
+\#*#
+
+# Logs avec potentiels secrets
+*.log
+logs/
+*.out
+*.err
+
+# IDE et éditeurs
+.vscode/settings.json
+.vscode/launch.json
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Données sensibles utilisateur
+personal/
+private/
+confidential/
+**/personal/**
+**/private/**
+**/confidential/**
+
+# Certificats et clés personnelles
+*.p12
+*.pfx
+*.keystore
+*.jks
+
+# Configuration personnalisée utilisateur
+user-config.yml
+user-settings.json
+personal.conf
+local.conf
+
+# Fichiers de test avec données sensibles
+test-secrets/
+**/test-data/**/*.json
+**/test-data/**/*.yml
+
+# Cache et données temporaires
+.cache/
+cache/
+tmp/
+temp/
+
+# Données d'installation personnalisées
+install-log.txt
+user-install.sh
+personal-install.sh
+
+# =============================================================================
+# SÉCURITÉ SPÉCIFIQUE OMARCHY FEDORA
+# =============================================================================
+
+# Configurations utilisateur personnalisées
+user-identification.sh
+personal-aliases
+custom-functions
+
+# Logs d'installation contenant potentiellement des infos sensibles
+install-*.log
+test-*.log
+debug-*.log
+
+# Fichiers de configuration avec mots de passe
+**/config/**/*password*
+**/config/**/*secret*
+**/config/**/*token*
+
+# Sauvegardes système
+backup-*
+system-backup.*
+
+# =============================================================================
+# DÉVELOPPEMENT
+# =============================================================================
+
+# Node modules (si ajout futur)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# UV (Python package manager)
+.uv/
+uv.lock
+
+# Rust
+target/
+Cargo.lock
+
+# Go
+go.mod
+go.sum
+
+# =============================================================================
+# DOCUMENTATION INTERNE
+# =============================================================================
+
+# Notes de développement
+TODO.md
+NOTES.md
+DEVELOPERS.md
+INTERNAL.md
+
+# Documentation avec infos sensibles
+docs/internal/
+docs/secrets/
+docs/private/

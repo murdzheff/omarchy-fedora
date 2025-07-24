@@ -1,0 +1,16 @@
+# Claude Code
+.claude/
+CLAUDE.md
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+*~
+
+# Secrets
+.env
+*.key
+*.pem

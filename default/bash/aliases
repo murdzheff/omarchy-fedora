@@ -1,0 +1,76 @@
+# Système de fichiers
+alias ls='eza -lh --group-directories-first --icons=auto'
+alias lsa='ls -a'
+alias lt='eza --tree --level=2 --long --icons --git'
+alias lta='lt -a'
+alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+alias cd="zd"
+zd() {
+  if [ $# -eq 0 ]; then
+    builtin cd ~ && return
+  elif [ -d "$1" ]; then
+    builtin cd "$1"
+  else
+    z "$@" && printf " \U000F17A9 " && pwd || echo "Erreur: Répertoire non trouvé"
+  fi
+}
+open() {
+  xdg-open "$@" >/dev/null 2>&1 &
+}
+
+# Répertoires
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# Outils
+alias g='git'
+alias d='docker'
+alias py='python3'
+n() { if [ "$#" -eq 0 ]; then nvim .; else nvim "$@"; fi; }
+
+# Git
+alias gcm='git commit -m'
+alias gcam='git commit -a -m'
+alias gcad='git commit -a --amend'
+
+# Python avec UV (gestionnaire moderne)
+alias pip='uv pip'
+alias venv='uv venv'
+alias python='uv run python'
+
+# Créer un nouveau projet Python avec UV
+uv-project() {
+  if [ "$#" -eq 0 ]; then
+    echo "Usage: uv-project <nom-projet>"
+    return 1
+  fi
+  uv init "$1"
+  cd "$1"
+  uv add --dev pytest black ruff mypy
+  echo "Projet Python '$1' créé avec UV et outils de développement"
+}
+
+# OpenTofu/Terraform (OpenTofu comme remplaçant open source)
+alias tf='tofu'
+alias terraform='tofu'
+tofu-workflow() {
+  echo "🔧 Formatting Terraform files..."
+  tofu fmt -recursive .
+  echo "🔧 Initializing Terraform..."
+  tofu init
+  echo "🔧 Validating configuration..."
+  tofu validate
+  echo "🔧 Planning changes..."
+  tofu plan
+}
+
+# Ansible aliases
+alias ap='ansible-playbook'
+alias av='ansible-vault'
+alias ag='ansible-galaxy'
+alias ai='ansible-inventory'
+
+# Recherche de paquets sans quitter le terminal (adaptés pour Fedora)
+alias dnff="dnf search | fzf --multi --preview 'dnf info {1}' --preview-window=down:75%"
+alias flatf="flatpak search | fzf --multi --preview 'flatpak info {1}' --preview-window=down:75%"

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Script pour changer de thème dans Omarchy Fedora
+
+if [ $# -eq 0 ]; then
+    echo "Usage: omarchy-fedora-theme-set <nom-du-theme>"
+    echo "Thèmes disponibles:"
+    ls ~/.local/share/omarchy-fedora/themes/
+    exit 1
+fi
+
+THEME_NAME="$1"
+THEME_PATH="$HOME/.config/omarchy/themes/$THEME_NAME"
+
+if [ ! -d "$THEME_PATH" ]; then
+    echo "Erreur: Le thème '$THEME_NAME' n'existe pas."
+    echo "Thèmes disponibles:"
+    ls ~/.local/share/omarchy-fedora/themes/
+    exit 1
+fi
+
+echo "🎨 Changement de thème vers: $THEME_NAME"
+
+# Changer le lien symbolique du thème actuel
+ln -snf "$THEME_PATH" ~/.config/omarchy/current/theme
+
+# Changer le fond d'écran
+BG_FILE=$(find "$THEME_PATH/backgrounds" -type f -name "*.png" -o -name "*.jpg" | head -n1)
+if [ -n "$BG_FILE" ]; then
+    ln -snf "$BG_FILE" ~/.config/omarchy/current/background
+fi
+
+# Redémarrer les composants pour appliquer le thème
+pkill waybar && waybar &
+pkill mako && mako &
+
+echo "✅ Thème '$THEME_NAME' appliqué avec succès!"
