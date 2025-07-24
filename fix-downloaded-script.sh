@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Script pour corriger le script 1-dnf-setup.sh téléchargé
+
+echo "Correction du script 1-dnf-setup.sh téléchargé..."
+
+# Corriger le script dans le répertoire téléchargé
+cat > ~/.local/share/omarchy-fedora/install/1-dnf-setup.sh << 'EOF'
+#!/bin/bash
+
+# Installation des outils de développement de base pour Fedora
+echo "Installation des outils de développement..."
+sudo dnf install -y gcc gcc-c++ make cmake autoconf automake libtool pkgconf pkg-config
+
+# Configuration des dépôts RPM Fusion pour les paquets supplémentaires
+sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install -y https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+# Installation de Flatpak pour les applications non disponibles dans les dépôts
+sudo dnf install -y flatpak
+sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+# Configuration DNF pour des performances améliorées
+sudo tee -a /etc/dnf/dnf.conf << 'EOC'
+
+# Configuration pour de meilleures performances
+max_parallel_downloads=10
+defaultyes=True
+keepcache=True
+
+# Couleurs et interface améliorée
+color=always
+EOC
+
+echo "Configuration DNF et dépôts terminée pour Fedora 42"
+EOF
+
+chmod +x ~/.local/share/omarchy-fedora/install/1-dnf-setup.sh
+
+echo "Script corrigé ! Vous pouvez maintenant relancer:"
+echo "bash ~/.local/share/omarchy-fedora/install.sh"
