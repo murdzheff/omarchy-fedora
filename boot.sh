@@ -27,8 +27,11 @@ if [[ -f "$SCRIPT_DIR/install.sh" ]]; then
   source "$SCRIPT_DIR/install.sh"
 else
   # Installation depuis GitHub
+  mkdir ~/.local
+  mkdir ~/.local/share
+  
   echo -e "\nCloning Omarchy Fedora Edition..."
-  rm -rf ~/.local/share/omarchy-fedora/
+  
   git clone https://github.com/votre-repo/omarchy-fedora.git ~/.local/share/omarchy-fedora >/dev/null
   
   # Utilisation d'une branche personnalisée si spécifiée
